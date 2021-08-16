@@ -4,7 +4,13 @@ set -e
 
 unset PYTHONPATH
 
-CONDA_HOME="$HOME/miniconda3"
+if [ $CONDA_HOME ]; then
+    echo "Your CONDA_HOME is $CONDA_HOME"
+else
+    CONDA_HOME="$HOME/miniconda3"
+    echo "Your CONDA_HOME doesn't exist, set to $HOME/miniconda3"
+fi
+
 
 CONDA_EXEC=$CONDA_HOME/bin/conda
 
