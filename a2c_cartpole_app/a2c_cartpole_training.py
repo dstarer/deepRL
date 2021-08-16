@@ -61,6 +61,7 @@ def roll_out(actor_network, task, sample_nums, value_network, init_state):
         softmax_action = torch.exp(log_softmax_action)
         action = np.random.choice(ACTION_DIM, p=softmax_action.cpu().data.numpy()[0])
         one_hot_action = [int(k == action) for k in range(ACTION_DIM)]
+        task.render()
         next_state, reward, done, _ = task.step(action)
         # fix_reward = -10 if done else 1
         actions.append(one_hot_action)
